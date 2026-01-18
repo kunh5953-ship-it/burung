@@ -17,6 +17,17 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 export default function Profile() {
   const { user, signOut } = useAuth();
@@ -164,16 +175,36 @@ export default function Profile() {
         ))}
       </div>
 
-      {/* Logout Button */}
+      {/* Logout Button with Confirmation */}
       <div className="px-4 pb-6">
-        <Button
-          onClick={handleSignOut}
-          variant="outline"
-          className="w-full h-12 rounded-xl border-destructive/30 text-destructive hover:bg-destructive/10"
-        >
-          <LogOut className="w-5 h-5 mr-2" />
-          Logout
-        </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button
+              variant="outline"
+              className="w-full h-12 rounded-xl border-destructive/30 text-destructive hover:bg-destructive/10"
+            >
+              <LogOut className="w-5 h-5 mr-2" />
+              Logout
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent className="max-w-[90%] rounded-2xl">
+            <AlertDialogHeader>
+              <AlertDialogTitle>Keluar dari SIRKEL?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Are you sure you want to log out? Kamu harus login kembali untuk mengakses akun.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel className="rounded-xl">Batal</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleSignOut}
+                className="rounded-xl bg-destructive hover:bg-destructive/90"
+              >
+                Ya, Logout
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </MobileLayout>
   );
