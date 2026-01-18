@@ -10,6 +10,10 @@ import Locate from "./pages/Locate";
 import Scan from "./pages/Scan";
 import Impact from "./pages/Impact";
 import Profile from "./pages/Profile";
+import History from "./pages/History";
+import Friends from "./pages/Friends";
+import Settings from "./pages/Settings";
+import Help from "./pages/Help";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -60,6 +64,38 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <ProtectedRoute>
+                  <History />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/friends"
+              element={
+                <ProtectedRoute>
+                  <Friends />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/settings"
+              element={
+                <ProtectedRoute>
+                  <Settings />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/help"
+              element={
+                <ProtectedRoute>
+                  <Help />
                 </ProtectedRoute>
               }
             />
