@@ -5,11 +5,13 @@ import { ActiveRentals } from "@/components/home/ActiveRentals";
 import { Challenges } from "@/components/home/Challenges";
 import { useProfile } from "@/hooks/useProfile";
 import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 import { Bell, Leaf } from "lucide-react";
 
 export default function Home() {
   const { user } = useAuth();
   const { profile, loading } = useProfile();
+  const navigate = useNavigate();
 
   return (
     <MobileLayout>
@@ -27,7 +29,10 @@ export default function Home() {
               </h1>
             </div>
           </div>
-          <button className="w-10 h-10 rounded-full bg-muted flex items-center justify-center relative">
+          <button 
+            onClick={() => navigate("/notifications")}
+            className="w-10 h-10 rounded-full bg-muted flex items-center justify-center relative"
+          >
             <Bell className="w-5 h-5 text-muted-foreground" />
             <span className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-destructive rounded-full border-2 border-background" />
           </button>
